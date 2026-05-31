@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Apresentacao {
+  id     Int    @id @default(1)
+  nome   String @db.VarChar(100)
+  titulo String @db.VarChar(150)
+  bio    String @db.Text
+
+  contatos Contato[]
+
+  @@map("apresentacao")
+}
+
+model Contato {
+  id             Int          @id @default(autoincrement())
+  icone          String       @db.VarChar(50)
+  texto          String       @db.VarChar(100)
+  href           String       @db.VarChar(200)
+  apresentacaoId Int          @default(1)
+  apresentacao   Apresentacao @relation(fields: [apresentacaoId], references: [id])
+
+  @@map("contatos")
+}
+
+model Formacao {
+  id      Int    @id @default(autoincrement())
+  titulo  String @db.VarChar(150)
+  org     String @db.VarChar(150)
+  periodo String @db.VarChar(50)
+  desc    String @db.Text
+
+  @@map("formacao")
+}
+
+model Curso {
+  id        Int    @id @default(autoincrement())
+  nome      String @db.VarChar(150)
+  categoria String @db.VarChar(80)
+  carga     String @db.VarChar(20)
+  ano       String @db.VarChar(10)
+
+  @@map("cursos")
+}
+
+model Projeto {
+  id          Int    @id @default(autoincrement())
+  nome        String @db.VarChar(150)
+  imagem      String @db.VarChar(200)
+  categoria   String @db.VarChar(80)
+  descricao   String @db.Text
+  tecnologias Json
+  links       Json
+
+  @@map("projetos")
+}
+
+model Experiencia {
+  id        Int    @id @default(autoincrement())
+  cargo     String @db.VarChar(150)
+  empresa   String @db.VarChar(150)
+  periodo   String @db.VarChar(80)
+  descricao String @db.Text
+
+  @@map("experiencia")
+}
+
+model CompetenciaTecnica {
+  id    Int    @id @default(autoincrement())
+  nome  String @db.VarChar(80)
+  icone String @db.VarChar(80)
+
+  @@map("competencias_tecnicas")
+}
+
+model CompetenciaSoft {
+  id    Int    @id @default(autoincrement())
+  nome  String @db.VarChar(80)
+  icone String @db.VarChar(80)
+
+  @@map("competencias_soft")
+}
+
+model Link {
+  id         Int    @id @default(autoincrement())
+  plataforma String @db.VarChar(80)
+  handle     String @db.VarChar(100)
+  icone      String @db.VarChar(80)
+  url        String @db.VarChar(200)
+
+  @@map("links")
+}
