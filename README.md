@@ -1,26 +1,32 @@
 # Portfólio 2º Semestre
 
-Portfólio acadêmico com API REST em Node.js + Express integrada ao MySQL via Prisma ORM.
+Portfólio acadêmico com API REST em Node.js + Express integrada ao MySQL via Prisma ORM 6.
 
 ## Estrutura
 
 ```
 Portfolio/
 ├── .env
+├── .gitignore
 ├── index.html
 ├── package.json
+├── package-lock.json
+├── README.md
 ├── css/
 │   └── style.css
+├── docs/
+│   ├── certificados/
+│   └── curriculum/
+├── img/
+│   ├── icone/
+│   └── projetos/
 ├── js/
 │   ├── db.js
 │   ├── server.js
 │   └── script.js
-├── prisma/
-│   ├── schema.prisma
-│   └── seed.js
-└── img/
-    ├── icone/perfil.jpg
-    └── projetos/
+└── prisma/
+    ├── schema.prisma
+    └── seed.js
 ```
 
 ## Requisitos
@@ -35,6 +41,12 @@ Portfolio/
 
 ```
 DATABASE_URL="mysql://root:suasenha@localhost:3306/portfolio"
+```
+
+Se não tiver senha no MySQL local, deixa vazio:
+
+```
+DATABASE_URL="mysql://root:@localhost:3306/portfolio"
 ```
 
 2. Instale as dependências:
